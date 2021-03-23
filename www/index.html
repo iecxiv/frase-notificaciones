@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"/>
+    <script src="./js/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/index.css" />
+    <link rel="stylesheet" type="text/css" href="./css/font-family.css" />
+    <!--<link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">-->
+    <title>Frases positivas para empezar el día</title>
+</head>
+
+<body>
+
+    <ul id="ham-menu">
+        <li class="ham-item"><a href="./index.html" id="menu_inicio">Inicio</a></li>
+    </ul>
+
+    <div id="container">
+        <div class="quote-box">
+            <br>
+            <div class="quote"> </div>
+            <div class="quote-author"></div>
+            <div class="botonera">
+                <br>
+                <!--<div class="app">
+                    <button id="add-btn">Add</button>
+                </div>-->
+                <a class="button" id="specBut" href="#" role="button">Dame otra frase!&nbsp&nbsp&nbsp</a>
+                <br>
+                <div>
+                    <label><input type="checkbox" id="customCheck1" onchange="Areyousure(this)">Notificación silenciosa en la mañana</label>
+                </div>
+            </div>
+        </div>
+     </div>
+    <script src="./js/blacktie.js" type="text/javascript"></script>
+    <script src="./js/index.js" type="text/javascript"></script>
+    <script src="./js/app.js" type="text/javascript"></script>
+    <script src="./js/appexit.js" type="text/javascript"></script>
+    <script>
+        demo.showLoading();
+        $('#ham-trigger').prop('checked', false);
+        document.onreadystatechange = function() { 
+            if (document.readyState !== "complete") {
+                demo.showLoading();
+            } else {
+                demo.hideLoading();
+            } 
+        };
+        function Areyousure(element) {
+            // If it is checked now, let it be
+            if (element.checked) {
+                navigator.notification.alert(
+                    'Se abrirá una notificación ahora mismo y deberás abrirla para que se programen las notificaciones silenciosas en la mañana. De lo contrario deberás desactivar, volver a activar esta función y abrir la respectiva notificación.',
+                    null,
+                    'Frases Positivas',
+                    'OK');
+                return false;
+            // Otherwise prompt the user
+            } else {
+                // Prompt the user to make sure
+                if (confirm("¿Estas seguro? Se cerrará la aplicación.")){
+                    // The user confirmed it, so uncheck it
+                    return true;
+                }else{
+                    // Otherwise, keep it checked
+                    element.checked = true;
+                } 
+            }
+        };
+	</script>
+</body>
+
+</html>
